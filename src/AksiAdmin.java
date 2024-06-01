@@ -1,4 +1,12 @@
+import java.util.Scanner;
+
 public class AksiAdmin extends Aksi {
+    private Scanner scanner;
+
+    public AksiAdmin() {
+        this.scanner = new Scanner(System.in);
+    }
+
     @Override
     public void tampilanAksi() {
         System.out.println("Aksi Admin:");
@@ -23,9 +31,24 @@ public class AksiAdmin extends Aksi {
     @Override
     public void lihatListFilm() {
         // Implementasi melihat list film
+        for (Film film : Film.getFilms().values()) {
+            System.out.println("Film: " + film.getName() + " - Deskripsi: " + film.getDescription() +
+                    " - Harga: " + film.getPrice() + " - Stok: " + film.getStock());
+        }
     }
 
     public void tambahFilm() {
         // Implementasi menambahkan film
+
+        System.out.print("Nama Film: ");
+        String name = scanner.next();
+        System.out.print("Deskripsi Film: ");
+        String description = scanner.next();
+        System.out.print("Harga Tiket: ");
+        double price = scanner.nextDouble();
+        System.out.print("Stok Tiket: ");
+        int stock = scanner.nextInt();
+
+        Film.addFilm(name, description, price, stock);
     }
 }
